@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="../pictures/OBOkart Logo copy1.png"type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link rel="stylesheet" href="nav.html">
+    <title>Obokart</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            outline:none;
+            border: none;
+            text-decoration: none;
+            text-transform: capitalize;
+            transition: .2s linear;     
+        }
+        html{
+            font-size: 62.5%;
+            scroll-behavior: smooth;
+            scroll-padding-top: 6rem;
+            overflow-x: hidden;
+        }
+        /* NavBar Styles */
+        header{
+            position: fixed;
+            top:0;left:0;right:0;
+            backdrop-filter: blur(10px);
+            padding: 0rem 5%;
+            display: flex;
+            align-items:center;
+            justify-content: space-between;
+            z-index: 1000;
+            box-shadow: 0 .5rem 1rem rgba(0,0 , 0, .1);
+        }
+        header .logo span{
+            color:red;
+        }
+        header .navbar a{
+            font-size: 2rem;
+            padding:0 1.5rem;
+            padding-top: 20px;
+            color: #060606;
+            text-decoration-line: none;
+            font-weight: bold;
+        }
+        header .navbar a:hover{
+            color:rgb(243, 77, 105);
+            text-decoration-line: none;
+            transform: scale(1.2);
+        }
+        header #toggler{
+            display: none;
+        }
+        header .fa-bars{
+            font-size: 3rem;
+            color: #333;
+            border-radius: .5rem;
+            padding:.5rem 1.5rem;
+            cursor: pointer;
+            border:.1rem solid rgba(0,0 , 0, .3);
+            display: none;
+        }
+        .drop_menu{
+            display: none;
+            position: absolute;
+            right: 0rem;
+            left: rem;
+            top: 75px;
+            width: 150px;
+            height: 0px;
+            background: rgba(255, 255, 255, 0.425);
+            backdrop-filter: blur(10px);
+            margin-top: 5px;
+            overflow: hidden;  
+        }
+        .drop_menu.open{
+            height: 165px;
+            width: 100%;
+            transition: 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .drop_menu a{
+            text-align: center;
+            padding: 1rem;  
+            color: #060000;
+            font-size: 25px;
+            display: block;
+            justify-content: center; 
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .drop_menu a:hover{
+            transform: scale(1.2);
+        }
+        .drop_menu{
+            display: block;
+        }
+        /* Carousel Style */
+        .carousel_pad{
+            padding-top: 80px;
+        }
+
+        /* Icons Center Alignment */
+        .center{
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 40px;
+            color: rgb(246, 217, 56);
+        }
+        .iconh4{
+            font-family: itallic;
+            font-weight: bold;
+            text-align: center;
+        }
+        .iconp{
+            text-align: center;
+        }
+
+        /* Category MainHeading */
+        .mh{
+            padding-bottom:50px;
+            padding-top: 10px;
+        }
+        .shadow{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .mainheading{
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif; 
+            font-weight: bold;
+        }
+        /* Category Block Styles */
+        .cat_row{
+            padding-left:50px;
+            padding-right:50px;
+            padding-bottom: 20px;
+        }
+        .cat_col{
+            padding-top: 15px;
+        }
+        .card:hover{
+            transform: scale(1.05);
+            transition: all 1s ease;    
+        }
+        .footerh4{
+            font-family: itallic;
+            font-weight: bold;
+            text-align: center;
+        }
+        /* Gallery Styles */
+        .galleryhead{
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            background-color: rgb(0, 0, 0);
+        }
+        .mainheading2{
+            text-align: center;
+            font-family: 'Ink Free', Times, serif; 
+            font-weight: bold;
+            font-size :60px; ;
+            padding: 10px;
+            color: white;
+        }
+        .bg{
+            background-image: url(../pictures/bg2\ \(2\).jpg);
+            background-size:contain;
+            border-bottom-left-radius:10px;
+            border-bottom-right-radius:10px;
+            background-attachment: fixed;        
+        } 
+        /* Details Bar */
+        .bg3{
+            background-image: url(../pictures/backgroundgifts.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            padding:0px;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .highlights{
+            padding: 30px;
+        }
+        .detailh1{
+            text-align: center;
+            color: rgb(251, 251, 251);
+        }
+        /* Client Details */
+        .bg2{
+            background-image: url(../pictures/fp.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            padding: 0px;
+        }
+        .footer h1{
+            font-family: Lucida Calligraphy; font-weight: bold;text-decoration: underline rgb(245, 35, 3);
+            color: #fdfbfb;
+            
+        }
+        .footer li{
+            font-size: large;font-weight: bold;font-family: Comic Sans MS;
+            list-style-type: none;
+            color: #fdfbfb;
+        }
+        /* Developers */
+        .devh6{
+            text-align: center;
+            font-size: large;
+            font-family: Comic Sans MS;
+            text-decoration: none;
+            color: white;
+        }
+
+        @media (max-width:1440px){
+            html{
+            font-size: 55%;
+            }
+        }
+        @media (max-width:976px){
+            header .fa-bars{
+                display:flex;  
+            }
+            header .navbar{
+                position: absolute;
+                top:100%;left:0;right:0;
+                /* background: #080000; */
+                border-top: .1rem solid rgba(0,0 , 0, .1);
+                display: none;
+            }
+            header .icons{
+                display: none;
+            }  
+        }
+        @media (max-width:768px) {
+            header .navbar a{
+                display: none;
+            }
+            header .navbar {
+                display: none;
+            }
+            header .fa-bars{
+                display:flex;
+                background-color: rgba(252, 250, 250, 0.929);
+                transition: 0.3s;
+            }
+            header .fa-bars:hover{
+                transform: scale(1.1);
+            }
+        }
+        @media (max-width:430px){
+            html{
+            font-size: 40%;
+            }
+            header .fa-bars{
+                display:flex;
+                background-color: rgba(252, 250, 250, 0.929);
+                font-size: x-large;
+            }
+            header .navbar a{
+                display: none; 
+            }
+            header .navbar{
+                display: none;
+            }  
+            .center{
+              display:flex;
+              justify-content: center;
+              align-items: center;
+              font-size: 30px;
+              color: rgb(246, 217, 56);
+            }  
+        }
+        .fas:hover{
+            transform: scale(2.0);
+            transition: all 0.3s ease; 
+        }
+        .fa:hover{
+            transform: scale(2.0);
+            transition: all 0.3s ease; 
+            text-decoration: none;
+        }
+        .far:hover{
+            transform: scale(2.0);
+            transition: all 0.3s ease; 
+        }
+    </style>
+</head>
+<body style="background-color: aliceblue; padding:0px;">
+    <header>
+        <input type="checkbox" name="" id="toggler">
+        <a href="#" class="logo"><img src="../pictures/OBOkart Logo copy.png" width="150px" height="80px"> <span>.</span></a>
+        <nav class="navbar">
+            <a href="#home">Home</a>
+            <a href="#product">Product</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <label for="toggler" class="fa-solid fa-bars"></label>
+        <div class="drop_menu">
+            <a href="#home" id="Home">Home</a>
+            <a href="#product" id="Product">Product</a>
+            <a href="#contact" id="Contact">Contact</a>
+        </div>
+    </header>
+    
+    <script>
+        const togglerIcon =document.querySelector('.toggler i')
+        const drop_menu =document.querySelector('.drop_menu')
+        
+        toggler.onclick =function(){
+            drop_menu.classList.toggle('open')
+            const isOpen = drop_menu.classList.contains('open')
+            toggler.classList = isOpen
+              ? 'fa-solid fa-xmark'
+              : 'fa-solid fa-bars'
+        }
+    </script>
+    <!-- Carousel -->
+    <div class="container-fluid carousel_pad">
+        <div class="row">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators" >
+              <li data-target="#myCarousel" data-slide-to="0" class="active" style="background-color: rgb(116, 115, 115);"></li>
+              <li data-target="#myCarousel" data-slide-to="1"style="background-color: rgb(116, 115, 115);"></li>
+              <li data-target="#myCarousel" data-slide-to="2" style="background-color: rgb(116, 115, 115);"></li>
+              <li data-target="#myCarousel" data-slide-to="3"style="background-color: rgb(116, 115, 115);"></li>
+            </ol>
+        
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+              <div class="item active">
+                <img src="../pictures/carousel4.png" alt="Los Angeles" width:100% height: 100%>
+              </div>
+
+              <div class="item">
+                  <img src="../pictures/carousel1.webp" alt="bd" width:100% height: 100%>
+              </div>
+        
+              <div class="item">
+                <img src="../pictures/carousel2.webp" alt="Chicago" width:100% height: 100%>
+              </div>
+            
+              <div class="item">
+                <img src="../pictures/carousel" alt="New york" width:0% height: 100%>
+              </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <!-- Icons -->
+    <div class="container-fluid">
+        <div class="row" style="padding: 35px;">
+          <div class="col-md-3">
+            <i class='fas fa-shipping-fast center'></i>
+            <h4 class="iconh4"> Fast&Free delivery</h5>
+            <p class="iconp">Apply on order over 100rs</p>
+          </div>
+          <div class="col-md-3">
+            <i class="far fa-smile center"></i>
+            <h4 class="iconh4"> 100% satisfaction</h4>
+            <p class="iconp">Customer Support Available 24/7</p>
+          </div>
+          <div class="col-md-3">
+            <i class='fas fa-hand-holding-usd center'></i>
+            <h4 class="iconh4"> Return Exchange</h4>
+            <p class="iconp">money back gurantee</p>
+          </div>
+          <div class="col-md-3">
+            <i class='fas fa-credit-card center'></i>
+            <h4 class="iconh4"> Fast&Free delivery</h4>
+            <p class="iconp">Apply on order over 100rs</p>
+          </div>
+        </div>
+    </div>
+    <!-- Category Name -->
+    <div class="container-fluid mh" id="product">
+        <div class="row" style="box-shadow:2px 2px 15px black;">
+          <div class="col-md-12 shadow" >
+            <img src="../pictures/giftlogo.png" class="image" height="75%" width="10%" >
+            <h1 class="mainheading">Our Product Categories</h1>
+          </div>
+        </div>
+    </div>
+    <!-- Products Category -->
+    <div class="container-fluid ">
+        <div class="row cat_row carr ">
+          <div class="col-md-3 cat_col">
+            <div class="card">
+                <div class="card-body" style="padding:0px;">
+                    <a href="Original_Pillow.html"><img src="../pictures/pillow/cuddly-birthday-personalised-cushion_1.webp" height="100%" width="100%" style=" border-radius:5px;"></a>
+                </div>
+                <div class="card-footer">
+                    <h4 class="footerh4">Printed Pillow</h4>
+                </div>
+            </div>
+          </div>
+          <div class="col-md-3 cat_col">
+            <div class="card">
+                <div class="card-body" style="padding:0px;">
+                    <a href="../html/Original_LED.html"><img src="../pictures/Leds/pecock led.jpeg" height="100%" width="100%" style=" border-radius:5px;"></a>
+                </div>
+                <div class="card-footer">
+                    <h4 class="footerh4">Customised LED</h4> 
+                </div>
+            </div>
+          </div>
+          <div class="col-md-3 cat_col">
+            <div class="card">
+                <div class="card-body" style="padding:0px;">
+                    <a href="../html/Original_MUG.html"><img src="../pictures/Mugs/mug.jpg" height="100%" width="100%" style=" border-radius:5px;"></a>
+                </div>
+                <div class="card-footer">
+                    <h4 class="footerh4">customised Printed Cups</h4> 
+                </div>
+            </div>
+          </div>
+          <div class="col-md-3 cat_col">
+            <div class="card">
+                <div class="card-body" style="padding:0px;">
+                    <a href="../html/Original_Woodart.html"><img src="../pictures/WoodArt/art.jpg" height="100%" width="100%" style=" border-radius:5px;"></a>
+                </div>
+                <div class="card-footer">
+                    <h4 class="footerh4">Customised Wood Frames</h4>
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row cat_row">
+            <div class="col-md-3 cat_col">
+                <div class="card">
+                    <div class="card-body" style="padding:0px;">
+                        <a href="Original_Frames.html"><img src="../pictures/Frames/oilframe_new.webp" height="100%" width="100%" style=" border-radius:5px;"></a>
+                    </div>
+                    <div class="card-footer">
+                        <h4 class="footerh4">Photo Frames</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 cat_col">
+                <div class="card">
+                    <div class="card-body" style="padding:0px;">
+                        <a href="Original_Tshirt.html"><img src="../pictures/Tshirt/farewell.jpeg" height="100%" width="100%" style=" border-radius:5px;"></a>
+                    </div>
+                    <div class="card-footer">
+                        <h4 class="footerh4">Customised T-shirts</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 cat_col">
+                <div class="card">
+                    <div class="card-body" style="padding:0px;">
+                        <a href="Orginal_clock.html"><img src="../pictures/clocks/wallframe.jpeg" height="100%" width="100%" style=" border-radius:5px;"></a>
+                    </div>
+                    <div class="card-footer">
+                        <h4 class="footerh4">Wall clock's</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 cat_col">
+                <div class="card">
+                    <div class="card-body" style="padding:0px;">
+                        <a href="Original_textframe.html"><img src="../pictures/textframes/heartshape2.jpg" height="100%" width="100%" style=" border-radius:5px;"></a>
+                    </div>
+                    <div class="card-footer">
+                        <h4 class="footerh4">Customised Text Frames</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+<div class="container-fluid">
+    <div class="row cat_row">
+    <div class="col-md-3 cat_col">
+        <div class="card">
+            <div class="card-body" style="padding:0px;">
+                <a href="Original_special.html"><img src="../pictures/special gifts/background.jpg" height="100%" width="100%" style=" border-radius:5px;"></a>
+            </div>
+            <div class="card-footer">
+                <h4 class="footerh4">Special Gifts</h4>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+    <!-- Gallery Name -->
+    <div class="container-fluid galleryhead" >
+        <div class="row">
+          <div class="col-md-12">
+            <h1 class="mainheading2" > Gallery </h1>
+          </div>
+        </div>
+    </div>
+    <!-- Gallery Photos -->
+    <div class="container-fluid bg">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="row">
+              <div class="col-md-12">
+                <img src="../pictures/WoodArt/art7.jpeg" height="100%" width="100%" style="padding-right:5px;padding-left:10px;padding-top: 50px;padding-bottom: 25px;">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <img src="../pictures/pillow/red pillow.jpeg" height="100%" width="100%" style="padding-right:10px;padding-left:10px; border-radius:10px;">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="row">
+              <div class="col-md-12">
+                <img src="../pictures/Mugs/mug4.jpeg" height="100%" width="100%" style="padding-right:10px;padding-left:10px;padding-top: 50px;padding-bottom:20px; border-radius:10px;">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <img src="../pictures/clocks/wallframe.jpeg" height="100%" width="100%" style="padding-right:10px;padding-left:10px;padding-bottom:20px; border-radius:10px;">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="row">
+              <div class="col-md-12">
+                <img src="../pictures/pillow/heartpilow.jpeg" height="100%" width="100%" style="padding-right:10px;padding-left:10px;padding-top: 100px;padding-bottom:20px; border-radius:10px;">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <img src="../pictures/lovesymbol.jpeg" height="100%" width="100%" style="padding-right:10px;padding-left:10px;padding-bottom:20px; border-radius:10px;">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="row">
+              <div class="col-md-12">
+                <img src="../pictures/Frames/Frames.jpeg" height="100%" width="100%" style="padding-top:50px;padding-left:10px;padding-right:10px; border-radius:10px;" >
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <img src="../pictures/special gifts/print.jpg" height="100%" width="100%" style="padding-top:50px;padding-left:10px; padding-right:10px;border-radius:10px;" >
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <!-- Details Bar -->
+    <div class="container"style="padding:10px;"></div>
+    <div class="container-fluid bg3">
+            <div class="container-fluid"style="background: transparent;backdrop-filter:blur(10px); padding:0px;">
+                <div class="row highlights">
+                    <div class="col-md-3">
+                        <h1 class="detailh1"><span class="glyphicon glyphicon-gift"style="font-size: 50px;color: red;"></span> 1500+</h1>
+                        <h3 class="detailh1">Gifts</h3>
+                    </div>
+                    <div class="col-md-3">
+                        <h1 class="detailh1"><i class='fas fa-smile'style="font-size: 50px;color: rgb(246, 217, 56);"></i> 1000+</h1>
+                        <h3 class="detailh1">Customers</h3>
+                    </div>
+                    <div class="col-md-3">    
+                        <h1 class="detailh1"><i class='fas fa-shipping-fast'style="font-size: 50px;color: rgb(246, 217, 56);"></i> 2000+</h1>
+                        <h3 class="detailh1">orders</h3>
+                    </div>
+                    <div class="col-md-3">
+                        <h1 class="detailh1"><i class='fas fa-users'style="font-size: 50px;color: rgb(246, 217, 56);"></i> 15+</h4>
+                        <h3 class="detailh1">Team Members</h3>
+                    </div>
+                </div>
+            </div>
+    </div>    
+    <!-- Client Details -->
+    <div class="container" style="padding:10px;"></div>
+    <div class="container-fluid bg2">
+        <div class="container-fluid" style="background-color: rgb(0, 0, 0,0.7);">
+        <div class="row footer">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-5 ">
+            <h1>Contact Info</h1>
+            <li>
+                <i class='fas fa-mobile-alt'style="color: rgb(246, 217, 56);"></i> +91 9030057201
+            </li>
+            <li>
+                <a href="#" class="fa fa-instagram" style="color: #C13584;"><a href="https://www.instagram.com/callme._.tarun?igsh=MWJ0NGo2MndxNnN3ag%3D%3D&utm_source=qr" style="color: rgb(253, 251, 251);text-decoration-line: none;" > instagram</a> 
+            </li>
+            <li>
+                <i class='far fa-envelope-open'style="color: rgb(246, 217, 56);"></i> obokart.com@gmail.com
+            </li>
+            <li >
+                <i class='fas fa-map-marker-alt'style="color: rgb(246, 217, 56);"></i> Kakinada,AP.
+            </li>
+        </div>
+        <div class="col-md-3">
+            <h1>Location</h1>
+            <p>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d1330.4015882876113!2d82.23176097387285!3d16.95216766640153!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTbCsDU3JzA2LjUiTiA4MsKwMTMnNTYuNiJF!5e0!3m2!1sen!2sin!4v1709222112111!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </p>
+        </div>
+    </div>
+    </div>
+    </div>
+    <!-- Developers -->
+    <div class="container-fluid" style=" background-color: black;" id="contact">
+        <div class="row">
+          <div class="col-sm-12">
+            <h6 class="devh6">
+              Designed By: M.Tarun <a href="../html/contact info.html" class='fas fa-mobile-alt' style="color: #C13584;"></a> K.Manikanta 
+            </h6>
+            <h6 class="devh6"><i class='far fa-copyright' style="color: white;"></i> All Rights Reserved-2024</h6>
+          </div>
+        </div>
+    </div>
+</body>
+</html>
